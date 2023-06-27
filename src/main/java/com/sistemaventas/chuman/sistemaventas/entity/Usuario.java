@@ -1,44 +1,37 @@
 package com.sistemaventas.chuman.sistemaventas.entity;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import lombok.Data;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario implements Serializable {
-    private static final long serialVersionUID = 1L;
-    public static final String U_ESTADO = "estado";
-
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "user", nullable = false, length = 15)
-    private String user;
-    @Column(name = "clave", nullable = false, length = 15)
+    private int id;
+    @Column(length = 500)
+    private String email;
+    @Column(length = 20)
     private String clave;
-    @Column(name = "estado", nullable = false)
-    private boolean estado;
+    @Column
+    private boolean vigencia;
+    @OneToOne
+    private Cliente cliente;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getUser() {
-        return user;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getClave() {
@@ -49,11 +42,19 @@ public class Usuario implements Serializable {
         this.clave = clave;
     }
 
-    public boolean isEstado() {
-        return estado;
+    public boolean isVigencia() {
+        return vigencia;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setVigencia(boolean vigencia) {
+        this.vigencia = vigencia;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }
