@@ -23,7 +23,7 @@ public class ClienteController {
         return this.service.save(c);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public GenericResponse update(@PathVariable int id, @Valid @RequestBody Cliente c){
         c.setId(id);
         return this.service.save(c);
